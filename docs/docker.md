@@ -43,3 +43,12 @@ Images were built locally using the following commands:
 docker build -t aj1297/vote-app .
 docker build -t aj1297/result-app .
 docker build -t aj1297/worker-app .
+Pushing Images to Docker Hub
+
+After building the images, they were pushed to Docker Hub:
+
+docker push aj1297/vote-app
+docker push aj1297/result-app
+docker push aj1297/worker-app
+
+These images were later pulled automatically by Kubernetes deployments.
