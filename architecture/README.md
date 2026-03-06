@@ -1,13 +1,32 @@
-Architecture diagram
+# System Architecture
 
+This project demonstrates an end-to-end DevOps implementation of a microservices based voting application.
 
+The system consists of multiple services that communicate with each other through a containerized environment orchestrated using Kubernetes.
 
-A front-end web app in Python which lets you vote between two options
-A Redis which collects new votes
-A .NET worker which consumes votes and stores them in…
-A Postgres database backed by a Docker volume
-A Node.js web app which shows the results of the voting in real time
-Notes
-The voting application only accepts one vote per client browser. It does not register additional votes if a vote has already been submitted from a client.
+## Components
 
-This isn't an example of a properly architected perfectly designed distributed app... it's just a simple example of the various types of pieces and languages you might see (queues, persistent data, etc), and how to deal with them in Docker at a basic level.
+1. Vote Service (Python)
+Frontend web application that allows users to vote between two options.
+
+2. Redis
+Acts as a temporary data store for incoming votes.
+
+3. Worker Service (.NET)
+Processes votes from Redis and stores them into PostgreSQL.
+
+4. PostgreSQL
+Persistent database used to store the final vote results.
+
+5. Result Service (Node.js)
+Displays the live voting results in the browser.
+
+6. Kubernetes
+Orchestrates all services and manages scaling, networking, and deployments.
+
+7. CI/CD Pipeline
+GitHub Actions builds Docker images and deploys them to the Kubernetes cluster.
+
+---
+
+## Architecture Diagram
