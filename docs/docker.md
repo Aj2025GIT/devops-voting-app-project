@@ -1,8 +1,8 @@
 # Docker Implementation
 
-In this project, all application services were containerized using Docker. Each microservice was packaged into a Docker image, allowing the application to run consistently across different environments.
+In this project, all microservices were containerized using Docker to ensure consistent environments across development and deployment stages.
 
-Docker was used to build images for each service and push them to Docker Hub for deployment in Kubernetes.
+Each service was packaged as a Docker image and pushed to Docker Hub. These images were later pulled by the Kubernetes cluster during deployment.
 
 ---
 
@@ -13,26 +13,33 @@ The application consists of the following containerized services:
 | Service | Technology | Purpose |
 |------|------|------|
 | Vote Service | Python | Frontend voting application |
-| Result Service | Node.js | Displays real-time voting results |
-| Worker Service | .NET | Processes votes from Redis and stores them in PostgreSQL |
-| Redis | Official Image | Temporary in-memory data store |
-| PostgreSQL | Official Image | Persistent database |
+| Result Service | Node.js | Displays voting results |
+| Worker Service | .NET | Processes votes from Redis |
+| Redis | Official Image | Temporary vote storage |
+| PostgreSQL | Official Image | Persistent vote storage |
 
 ---
 
-## Docker Images
+## Docker Images Used
 
-Custom Docker images were created for the following services:
+Custom images were built and pushed to Docker Hub:
 
-- Vote Service
-- Result Service
-- Worker Service
+- docker.io/aj1297/vote-app
+- docker.io/aj1297/result-app
+- docker.io/aj1297/worker-app
 
-Official Docker images were used for:
+Official images used:
 
-- Redis
-- PostgreSQL
+- redis:alpine
+- postgres:alpine
 
-All custom images were pushed to Docker Hub.
+---
 
-Example:
+## Docker Build Commands
+
+Images were built locally using the following commands:
+
+```bash
+docker build -t aj1297/vote-app .
+docker build -t aj1297/result-app .
+docker build -t aj1297/worker-app .
